@@ -8,7 +8,7 @@
 ###            1.Calling Time Recursion.
 ###            2.Returning Time Recursion.
             
-Calling Time Recursion :- This Type of Recursion Exectes all The Available Lines
+Calling Time Recursion :- This Type of Recursion Executes all The Available Lines
                           of Code Before The Funtion Call.
 
 Returning Time Recursion :- Here The Funtion is Called and After Reaching the 
