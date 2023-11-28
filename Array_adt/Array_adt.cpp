@@ -3,15 +3,21 @@
 using namespace std;
 
 
-
+// created a structure named array 
 struct array{
-	int a[10];
-	int size;
-	int len;
+	int a[10];  //Declared a array{ a [ of size 10 ] } -> we can ignore the size declared here 
+	int size;  // the Integer size variable is used to decide the overall size of array
+	int len;   // the Integer len Variable is used to represent total no of elememts in the array
 };
 
+// Display method used to Print all Contents of the Array 
 
 void display(struct array arr){
+	
+	// while calling struct we are using call by value 
+
+	// all we need is to access the elements in the array and not to modify the data in it 
+
 	cout<<endl<<"Elements in Array :"<<endl;
 
 	for(int i = 0 ; i <arr.len ; i++){
@@ -22,14 +28,26 @@ void display(struct array arr){
 
 }
 
+// Insert method used to insert a element to the array at last available index 
+
 void insert(struct array *arr, int ele){
+
+	// while calling struct we are using call by address
+
+	// Here we are Modifying the elements in the array and adding new data in it
+
+
 	if(arr->len < arr->size){
 		arr->a[arr->len++] = ele;
 	}
 }
 
+// Append method is used to add a element to array at desired location
 
 void append(struct array *arr , int index , int ele){
+
+	// Call by address
+
 	if(index < arr->len && index > 0){
 		if(arr->len < arr-> size){
 			for(int i = arr->len ; i >=index ; i--){
@@ -41,8 +59,13 @@ void append(struct array *arr , int index , int ele){
 	}
 }
 
+// Delete_ele method is used to Delete a element in array at any desired location
+
 
 void delete_ele(struct array *arr , int index){
+
+	// call by address
+
 	int temp_str = arr->a[index];
 	if(index < arr->len && index > 0){
 
@@ -55,7 +78,14 @@ void delete_ele(struct array *arr , int index){
 }
 
 
+// Linear_search :- { Searching Alogrithm }
+	// searching  a element through out the array in a sequential manner comparing the req element to the array element
+	// we use for loop to iterate through the whole array
+
 int linear_search (struct array arr,int ele){
+	
+	//call by value
+
 	int cnt = 0;
 	for(int i = 0 ; i < arr.len; i++){
 		if(arr.a[i] == ele){
@@ -64,7 +94,16 @@ int linear_search (struct array arr,int ele){
 		}
 	}
 	return 1;
+		// Computational Complexity || Time-Complexity  
+		 // 				O(n)	||	BigOh(n)
 }
+
+
+// Binary_search :- { Searching Algorithm}
+	// also used for seaching a element  --> Requires a sorted array
+	// User different Searching approach-----------{ Devide-and-Conquer }
+	// Devides the array by half to reach the mid point and search element --> Reduced Search Time
+
 
 void binary_search(struct array arr,int ele , int low , int high){
 	int mid;
@@ -85,6 +124,66 @@ void binary_search(struct array arr,int ele , int low , int high){
 			high = mid - 1;
 		}
 	}
+	// Computational Complexity || Time-Complexity  
+	// 				   O(log n) || BigOh(log n)
+}
+
+// Simple Get method to retrive a element at given index
+
+int get(struct array arr, int index){
+	if(index >= 0 && index < arr.len){
+		return arr.a[index];
+	}
+	return -1;
+}
+
+// Simple set method to replace a element at given index
+
+void set(struct array *arr, int index , int ele){
+	if(index >= 0 && index < arr->len){
+		if(arr->len < arr->size){
+			arr->a[index] = ele;
+		}
+	}
+}
+
+//Simple method to find the maximum value element in the array
+
+int max(struct array arr){
+	int M = arr.a[0];
+	for(int i = 0 ; i<arr.len ; i++){
+		if(arr.a[i] > M){
+			M = arr.a[i];
+		}
+	}
+		return M;
+}
+
+
+//Simple method to find the minimum value element in the array
+
+int min(struct array arr){
+	int M = arr.a[0];
+	for(int i = 0 ; i<arr.len ; i++){
+		if(arr.a[i] < M){
+			M = arr.a[i];
+		}
+	}
+	return M;
+}
+
+// sum method for calculating sum of all elements in array
+
+int sum(struct array arr){
+	int sum = 0;
+	for(int i = 0 ; i < arr.len ; i++){
+		sum += arr.a[i];
+	}
+	return sum;
+}
+
+float Average(struct array arr){
+	return(float)sum(arr)/arr.len;
 }
 
 
@@ -117,7 +216,23 @@ int main(){
 
 	// binary_search(arr,9,0,arr.len);
 
+	int getdata = get(arr,7);
+	cout<<"Retrived data : "<<getdata<<endl<<endl;
 
+	set(&arr,8,10);
+	display(arr);
+
+	int max_ele = max(arr);
+	cout<<"Maximum VALUE : "<<max_ele<<endl<<endl;
+
+	int min_ele = min(arr);
+	cout<<"Minimum VALUE : "<<min_ele<<endl<<endl;
+
+	int total = sum(arr);
+	cout<<"Total VALUE : "<<total<<endl<<endl;
+
+	int avg = Average(arr);
+	cout<<"Average VALUE : "<<avg<<endl<<endl;
 
 
 }
