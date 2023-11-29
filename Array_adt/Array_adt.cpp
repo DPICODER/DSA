@@ -186,6 +186,47 @@ float Average(struct array arr){
 	return(float)sum(arr)/arr.len;
 }
 
+// Simple code for reversing a array we use 2-different arrays and 2-for-loops
+
+void reverse_arr(struct array *arr){
+	
+	int arr1[arr->len];
+	
+	//loading the struct elements into a temporary array
+
+	int i , j;
+	for(i = 0 ; i <arr->len ; i++){
+		arr1[i] = arr->a[i];
+	}
+
+	int size = sizeof(arr1)/sizeof(int);
+	int arr2[size];
+
+	cout<<"SIZE OF ARRAY : "<<size<<endl<<endl;
+	// Using 2 for loops to reverse the temp array created
+	
+	for(i = 0 ; i < size ;i++){
+		for(j =0 ; j < size-i; j++){ 
+			arr2[j] = arr1[i];			
+								// j = 1 and j < size-i < = > j = 1  -> j < 8-1 (7)
+								// here on arr2[1] ---> we place arr1[7]
+								// j = 2 and j < size-i < = > j = 2  -> j < 8-2 (6)
+								// here on arr2[2] ---> we place arr1[6]
+
+								//and so onn-------
+		}
+	}
+
+
+
+
+	//printing reversed array
+	cout<<"reversed Array : ";
+	for(int i = 0 ; i <size ; i++){
+		cout<<" | "<<arr2[i]<<" | ";
+	}
+	cout<<endl<<endl;
+}
 
 int main(){
 	struct array arr = {{1,2,4,5,7,8,9},20,7};
@@ -234,5 +275,6 @@ int main(){
 	int avg = Average(arr);
 	cout<<"Average VALUE : "<<avg<<endl<<endl;
 
+	reverse_arr(&arr);
 
 }
