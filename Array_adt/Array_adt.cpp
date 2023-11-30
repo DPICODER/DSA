@@ -217,15 +217,107 @@ void reverse_arr(struct array *arr){
 		}
 	}
 
-
-
-
 	//printing reversed array
 	cout<<"reversed Array : ";
 	for(int i = 0 ; i <size ; i++){
 		cout<<" | "<<arr2[i]<<" | ";
 	}
 	cout<<endl<<endl;
+}
+
+void reverse_arr_Swap(struct array *arr){
+	
+	int arr1[arr->len];
+	
+	//loading the struct elements into a temporary array
+
+	int i , j ;
+
+	for(i = 0 ; i <arr->len ; i++){
+		arr1[i] = arr->a[i];
+	}
+
+	int size = sizeof(arr1)/sizeof(int);
+
+	cout<<"SIZE OF ARRAY : "<<size<<endl<<endl;
+	// Using 2 for loops to reverse the temp array created
+	
+		int temp = 0;
+	for(i = 0,j = arr->len-1 ; i < j ;i++,j--){
+			temp = arr1[i];
+			arr1[i] = arr1[j];
+			arr1[j] = temp; 						
+	//printing reversed array
+	
+	}
+		cout<<"reversed Array : ";
+	for(int i = 0 ; i <size ; i++){
+		cout<<" | "<<arr1[i]<<" | ";
+}
+		cout<<endl<<endl;
+}
+
+
+void shifting(struct array *arr){
+	int size = arr->len;
+	int holder,i,arr1[size],arr2[size];
+	
+	//loading elements into temporary array
+
+	for(i = 0 ; i < size ; i++){
+			arr1[i] = arr->a[i];
+			arr2[i] = arr->a[i];
+		}
+
+	// Left Shifting array
+
+	for(i = 0 ; i <size ; i++){
+		arr1[i-1] = arr1[i];
+	}
+
+	cout<<"Left shifted Array : ";
+	for(int i = 0 ; i <size ; i++){
+		cout<<" | "<<arr1[i]<<" | ";
+	}
+		cout<<endl<<endl;
+
+	// Right Shifting array
+
+	for(i = size ; i >= 0 ; i--){
+			// cout<<"i val :"<<i<<endl;
+			arr2[i+1] = arr2[i];
+		}
+
+	cout<<"Right shifted Array : ";
+	for(int i = 0 ; i <size ; i++){
+		cout<<" | "<<arr2[i]<<" | ";
+}
+		cout<<endl<<endl;
+
+//============ This Code Need Some Rework ====================//
+// 	// Right to Left aka Rotating Shifting array
+// 	int x = 0;
+// 	cout<<"Loop Shift: "<<endl;
+// 	while(x < 4){
+// 	int container = 0;
+
+// 	for(i = 0 ; i <size ; i++){
+// 		if(i == 0){
+// 			container = arr1[i];
+// 		}
+// 		arr1[i-1] = arr1[i];
+// 		if(i == size){
+// 			arr1[size] = container;
+// 		}
+// 	}
+
+// 	for(int i = 0 ; i <size ; i++){
+// 		cout<<" | "<<arr2[i]<<" | ";
+// 	}
+// 	x++;
+// 		cout<<endl<<endl;
+// }
+//=============================================================//
 }
 
 int main(){
@@ -261,6 +353,7 @@ int main(){
 	cout<<"Retrived data : "<<getdata<<endl<<endl;
 
 	set(&arr,8,10);
+
 	display(arr);
 
 	int max_ele = max(arr);
@@ -275,6 +368,10 @@ int main(){
 	int avg = Average(arr);
 	cout<<"Average VALUE : "<<avg<<endl<<endl;
 
-	reverse_arr(&arr);
+	// reverse_arr(&arr);
+
+	reverse_arr_Swap(&arr);
+
+	shifting(&arr);
 
 }
