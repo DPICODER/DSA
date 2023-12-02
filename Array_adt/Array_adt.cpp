@@ -320,6 +320,18 @@ void shifting(struct array *arr){
 //=============================================================//
 }
 
+void issorted(struct array arr){
+	for(int i = 0 ; i < arr.len-1 ; i++){
+		if(arr.a[i] < arr.a[i+1]){
+			printf("Array is Sorted \n");
+		}
+		else{
+			printf("Array is not Sorted\n");
+		}
+	}
+}
+
+
 int main(){
 	struct array arr = {{1,2,4,5,7,8,9},20,7};
 
@@ -373,5 +385,10 @@ int main(){
 	reverse_arr_Swap(&arr);
 
 	shifting(&arr);
+
+	display(arr);
+
+
+	issorted(arr);
 
 }
